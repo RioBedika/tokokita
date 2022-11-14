@@ -6,7 +6,6 @@ class ProdukDetail extends StatefulWidget {
   Produk? produk;
 
   ProdukDetail({Key? key, this.produk}) : super(key: key);
-
   @override
   _ProdukDetailState createState() => _ProdukDetailState();
 }
@@ -44,7 +43,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-//Tombol Edit
+        //Tombol Edit
         OutlinedButton(
             child: const Text("EDIT"),
             onPressed: () {
@@ -69,7 +68,14 @@ class _ProdukDetailState extends State<ProdukDetail> {
         //tombol hapus
         OutlinedButton(
           child: const Text("Ya"),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ProdukForm(
+                          produk: widget.produk!,
+                        )));
+          },
         ),
         //tombol batal
         OutlinedButton(

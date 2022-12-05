@@ -4,7 +4,17 @@ class Produk {
   String? namaProduk;
   int? hargaProduk;
 
-  Produk(
+  Produk({this.id, this.kodeProduk, this.namaProduk, this.hargaProduk});
+
+  factory Produk.fromJson(Map<String, dynamic> obj) {
+    return Produk(
+        id: int.tryParse('${obj['id']}'),
+        kodeProduk: obj['kode_produk'],
+        namaProduk: obj['nama_produk'],
+        hargaProduk: int.tryParse('${obj['harga']}'));
+  }
+}
+  /*Produk(
       {this.id,
       this.kodeProduk,
       this.namaProduk,
@@ -18,4 +28,4 @@ class Produk {
         namaProduk: obj['nama_produk'],
         hargaProduk: obj['harga']);
   }
-}
+}*/

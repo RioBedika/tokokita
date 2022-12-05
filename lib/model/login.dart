@@ -9,10 +9,19 @@ class Login {
 
   factory Login.fromJson(Map<String, dynamic> obj) {
     return Login(
+        code: int.tryParse('${obj['code']}'),
+        status: '${obj['status']}' == 'true',
+        token: obj['data']['token'],
+        userID: int.tryParse('${obj['data']['user']['id']}'),
+        userEmail: obj['data']['user']['email']);
+  }
+}
+  /*factory Login.fromJson(Map<String, dynamic> obj) {
+    return Login(
         code: obj['code'],
         status: obj['status'],
         token: obj['data']['token'],
         userID: obj['data']['user']['id'],
         userEmail: obj['data']['user']['email']);
   }
-}
+}*/

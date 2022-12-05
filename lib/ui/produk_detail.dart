@@ -6,6 +6,7 @@ class ProdukDetail extends StatefulWidget {
   Produk? produk;
 
   ProdukDetail({Key? key, this.produk}) : super(key: key);
+
   @override
   _ProdukDetailState createState() => _ProdukDetailState();
 }

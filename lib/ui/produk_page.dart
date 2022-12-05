@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tokokita/bloc/logout_bloc.dart';
 import 'package:tokokita/bloc/produk_bloc.dart';
+import 'package:tokokita/bloc/logout_bloc.dart';
 import 'package:tokokita/model/produk.dart';
 import 'package:tokokita/ui/login_page.dart';
 import 'package:tokokita/ui/produk_detail.dart';
@@ -83,6 +83,7 @@ class ListProduk extends StatelessWidget {
 
 class ItemProduk extends StatelessWidget {
   final Produk produk;
+
   const ItemProduk({Key? key, required this.produk}) : super(key: key);
 
   @override

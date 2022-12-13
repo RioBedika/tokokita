@@ -14,6 +14,7 @@ class Produk {
         hargaProduk: int.tryParse('${obj['harga']}'));
   }
 }
+
   /*Produk(
       {this.id,
       this.kodeProduk,

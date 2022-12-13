@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tokokita/bloc/produk_bloc.dart';
 import 'package:tokokita/bloc/logout_bloc.dart';
+import 'package:tokokita/bloc/produk_bloc.dart';
 import 'package:tokokita/model/produk.dart';
 import 'package:tokokita/ui/login_page.dart';
 import 'package:tokokita/ui/produk_detail.dart';
@@ -54,6 +54,9 @@ class _ProdukPageState extends State<ProdukPage> {
           return snapshot.hasData
               ? ListProduk(
                   list: snapshot.data,
+                  onChange: () {
+                    setState(() {});
+                  },
                 )
               : const Center(
                   child: CircularProgressIndicator(),
@@ -66,8 +69,9 @@ class _ProdukPageState extends State<ProdukPage> {
 
 class ListProduk extends StatelessWidget {
   final List? list;
+  VoidCallback? onChange;
 
-  const ListProduk({Key? key, this.list}) : super(key: key);
+  ListProduk({Key? key, this.onChange, this.list}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +80,7 @@ class ListProduk extends StatelessWidget {
         itemBuilder: (context, i) {
           return ItemProduk(
             produk: list![i],
+            onChange: onChange,
           );
         });
   }
@@ -83,8 +88,10 @@ class ListProduk extends StatelessWidget {
 
 class ItemProduk extends StatelessWidget {
   final Produk produk;
+  final VoidCallback? onChange;
 
-  const ItemProduk({Key? key, required this.produk}) : super(key: key);
+  const ItemProduk({Key? key, this.onChange, required this.produk})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +102,13 @@ class ItemProduk extends StatelessWidget {
             MaterialPageRoute(
                 builder: (context) => ProdukDetail(
                       produk: produk,
-                    )));
+                    ))).then((value) {
+          if (value == true) {
+            if (onChange != null) {
+              onChange!();
+            }
+          }
+        });
       },
       child: Card(
         child: ListTile(

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tokokita/bloc/produk_bloc.dart';
+import 'package:tokokita/helpers/api.dart';
 import 'package:tokokita/model/produk.dart';
 import 'package:tokokita/ui/produk_form.dart';
+import 'package:tokokita/widget/warning_dialog.dart';
 
 class ProdukDetail extends StatefulWidget {
   Produk? produk;
@@ -44,7 +47,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        //Tombol Edit
+//Tombol Edit
         OutlinedButton(
             child: const Text("EDIT"),
             onPressed: () {
@@ -55,7 +58,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
                             produk: widget.produk!,
                           )));
             }),
-        //Tombol Hapus
+//Tombol Hapus
         OutlinedButton(
             child: const Text("DELETE"), onPressed: () => confirmHapus()),
       ],
@@ -70,12 +73,10 @@ class _ProdukDetailState extends State<ProdukDetail> {
         OutlinedButton(
           child: const Text("Ya"),
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ProdukForm(
-                          produk: widget.produk!,
-                        )));
+            ProdukBloc.deleteProduk(id: widget.produk?.id).then((value) {
+              print('hasil delete = $value');
+              Navigator.pop(context, value);
+            });
           },
         ),
         //tombol batal
@@ -86,6 +87,17 @@ class _ProdukDetailState extends State<ProdukDetail> {
       ],
     );
 
-    showDialog(builder: (context) => alertDialog, context: context);
+    showDialog(builder: (context) => alertDialog, context: context)
+        .then((value) {
+      if (value == true) {
+        Navigator.pop(context, true);
+      } else {
+        showDialog(
+            context: context,
+            builder: (c) => const WarningDialog(
+                  description: 'Data gagal dihapus',
+                ));
+      }
+    });
   }
 }

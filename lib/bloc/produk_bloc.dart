@@ -40,9 +40,9 @@ class ProdukBloc {
       "harga": produk.hargaProduk.toString()
     };
     print("Body : $body");
-    var response = await Api().post(apiUrl, body);
+    var response = await Api().put(apiUrl, body);
     var jsonObj = json.decode(response.body);
-    return jsonObj['data'];
+    return jsonObj['code'] == 200;
   }
 
   static Future<bool> deleteProduk({int? id}) async {
@@ -50,6 +50,6 @@ class ProdukBloc {
 
     var response = await Api().delete(apiUrl);
     var jsonObj = json.decode(response.body);
-    return (jsonObj as Map<String, dynamic>)['data'];
+    return jsonObj['code'] == 200;
   }
 }

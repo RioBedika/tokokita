@@ -123,7 +123,7 @@ class _ProdukFormState extends State<ProdukForm> {
             if (!_isLoading) {
               if (widget.produk != null) {
                 //kondisi update produk
-
+                ubah();
               } else {
                 //kondisi tambah produk
                 simpan();
@@ -137,9 +137,7 @@ class _ProdukFormState extends State<ProdukForm> {
     setState(() {
       _isLoading = true;
     });
-    Produk createProduk = Produk(
-      id: null, /*code: null*/
-    );
+    Produk createProduk = Produk(id: null);
     createProduk.kodeProduk = _kodeProdukTextboxController.text;
     createProduk.namaProduk = _namaProdukTextboxController.text;
     createProduk.hargaProduk = int.parse(_hargaProdukTextboxController.text);
@@ -162,9 +160,7 @@ class _ProdukFormState extends State<ProdukForm> {
     setState(() {
       _isLoading = true;
     });
-    Produk updateProduk = Produk(
-      id: null, /*code: null*/
-    );
+    Produk updateProduk = Produk(id: null);
     updateProduk.id = widget.produk!.id;
     updateProduk.kodeProduk = _kodeProdukTextboxController.text;
     updateProduk.namaProduk = _namaProdukTextboxController.text;

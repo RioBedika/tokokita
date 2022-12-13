@@ -73,7 +73,7 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
         }
         //validasi email
         Pattern pattern =
-            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zAZ]{2,}))$';
         RegExp regex = RegExp(pattern.toString());
         if (!regex.hasMatch(value)) {
           return "Email tidak valid";
@@ -116,7 +116,7 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
     );
   }
 
-  //Membuat Tombol Registrasi
+//Membuat Tombol Registrasi
   Widget _buttonRegistrasi() {
     return ElevatedButton(
         child: const Text("Registrasi"),

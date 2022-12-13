@@ -1,4 +1,5 @@
 class ApiUrl {
+  //ip tetring asus
   static const String baseUrl = 'http://10.0.2.2/toko-api/public';
 
   static const String registrasi = baseUrl + '/registrasi';

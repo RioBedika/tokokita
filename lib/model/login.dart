@@ -16,6 +16,7 @@ class Login {
         userEmail: obj['data']['user']['email']);
   }
 }
+
   /*factory Login.fromJson(Map<String, dynamic> obj) {
     return Login(
         code: obj['code'],
